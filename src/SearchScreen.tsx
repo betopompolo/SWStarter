@@ -1,7 +1,7 @@
 import {StyleSheet, View} from "react-native";
 import {TextInput} from "@app/TextInput";
 import {Colors} from "@app/Colors";
-import {Spacing} from "@app/Spacing";
+import {Spacing, SpacingView} from "@app/Spacing";
 import {Text} from "@app/typography/Text";
 import {RadioButton} from "@app/RadioButton";
 import {useState} from "react";
@@ -21,11 +21,11 @@ export function SearchScreen() {
     <View style={styles.screen}>
       <View style={styles.searchView}>
         <Text type='body'>What are you searching for?</Text>
+        <SpacingView space='medium' />
         <View style={styles.radioGroup}>
           <RadioButton isChecked={!isMovieSearch} onTap={handlePeopleRadioBtnTap} label={'People'} />
           <RadioButton isChecked={isMovieSearch} onTap={handleMoviesRadioBtnTap} label={'Movies'} />
         </View>
-
         <TextInput placeholder={"e.g. Chewbacca, Yoda"}/>
       </View>
 
@@ -39,10 +39,11 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.white,
   },
   searchView: {
-    padding: Spacing.medium,
+    padding: Spacing.large,
   },
   radioGroup: {
     flexDirection: 'row',
-    gap: Spacing.large,
+    gap: Spacing.xLarge,
+    marginBottom: Spacing.small,
   }
 });

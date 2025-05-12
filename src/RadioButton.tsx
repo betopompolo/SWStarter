@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
   row: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: Spacing.small,
+    gap: Spacing.xSmall,
   },
   indicator: {
     height: indicatorSize,
