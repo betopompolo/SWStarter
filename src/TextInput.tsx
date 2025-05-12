@@ -1,5 +1,5 @@
 import {StyleSheet, TextInput as RNTextInput, TextInputProps as RNTextInputProps} from 'react-native';
-import {Fonts} from "@app/Typography";
+import {Fonts} from "@app/typography/Fonts";
 import {Colors} from "@app/Colors";
 import {Spacing} from "@app/Spacing";
 
@@ -12,7 +12,6 @@ export function TextInput({value, onChangeText, placeholder}: TextInputProps) {
 }
 
 // TODO: Android
-// TODO: Move padding to separate file
 const styles = StyleSheet.create({
   input: {
     borderRadius: 4,
@@ -20,6 +19,6 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     padding: Spacing.small,
     fontFamily: Fonts.bold,
-    color: Colors.gray2,
+    color: Colors.black,
   },
 })
