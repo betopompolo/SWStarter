@@ -1,14 +1,30 @@
-import {StyleSheet, TextInput as RNTextInput, TextInputProps as RNTextInputProps} from 'react-native';
-import {Fonts} from "@app/typography/Fonts";
-import {Colors} from "@app/Colors";
-import {Spacing} from "@app/Spacing";
+import {
+  StyleSheet,
+  TextInput as RNTextInput,
+  TextInputProps as RNTextInputProps,
+} from "react-native";
+import { Fonts } from "@app/typography/Fonts";
+import { Colors } from "@app/Colors";
+import { Spacing } from "@app/Spacing";
 
-type TextInputProps = Pick<RNTextInputProps, 'placeholder' | 'onChangeText' | 'value'>;
+type TextInputProps = Pick<
+  RNTextInputProps,
+  "placeholder" | "onChangeText" | "value"
+>;
 
-export function TextInput({value, onChangeText, placeholder}: TextInputProps) {
+export function TextInput({
+  value,
+  onChangeText,
+  placeholder,
+}: TextInputProps) {
   return (
-    <RNTextInput placeholder={placeholder} style={styles.input} onChangeText={onChangeText} value={value}/>
-  )
+    <RNTextInput
+      placeholder={placeholder}
+      style={styles.input}
+      onChangeText={onChangeText}
+      value={value}
+    />
+  );
 }
 
 // TODO: Android
@@ -21,4 +37,4 @@ const styles = StyleSheet.create({
     fontFamily: Fonts.bold,
     color: Colors.black,
   },
-})
+});
