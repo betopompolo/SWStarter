@@ -1,6 +1,6 @@
 import { StyleSheet, View } from "react-native";
-import { Colors } from "@app/Colors";
-import { Spacing } from "@app/Spacing";
+import { Colors } from "@app/components/Colors";
+import { Spacing } from "@app/components/Spacing";
 
 export const Divider = () => {
   return <View style={styles.divider} />;

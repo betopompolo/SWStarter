@@ -3,9 +3,9 @@ import {
   TextInput as RNTextInput,
   TextInputProps as RNTextInputProps,
 } from "react-native";
-import { Fonts } from "@app/typography/Fonts";
-import { Colors } from "@app/Colors";
-import { Spacing } from "@app/Spacing";
+import { Fonts } from "@app/components/typography/Fonts";
+import { Colors } from "@app/components/Colors";
+import { Spacing } from "@app/components/Spacing";
 
 type TextInputProps = Pick<
   RNTextInputProps,

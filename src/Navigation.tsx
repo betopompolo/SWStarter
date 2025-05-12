@@ -3,9 +3,10 @@ import {
   createStaticNavigation,
   StaticParamList,
 } from "@react-navigation/native";
-import { SearchScreen } from "@app/SearchScreen";
-import { NavigationHeader } from "@app/NavigationHeader";
-import { SearchResultsScreen } from "@app/SearchResultsScreen";
+import { SearchScreen } from "@app/screens/SearchScreen";
+import { NavigationHeader } from "@app/components/NavigationHeader";
+import { SearchResultsScreen } from "@app/screens/SearchResultsScreen";
+import { MovieDetailsScreen } from "@app/screens/MovieDetailsScreen";
 
 const RootStack = createNativeStackNavigator({
   screens: {
@@ -15,10 +16,14 @@ const RootStack = createNativeStackNavigator({
     SearchResults: {
       screen: SearchResultsScreen,
     },
+    MovieDetails: {
+      screen: MovieDetailsScreen,
+    },
   },
   screenOptions: {
     header: (props) => <NavigationHeader title={"SWStarter"} {...props} />,
   },
+  initialRouteName: "MovieDetails",
 });
 
 type RootStackParamList = StaticParamList<typeof RootStack>;

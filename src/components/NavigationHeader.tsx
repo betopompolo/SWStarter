@@ -1,7 +1,7 @@
 import { NativeStackHeaderProps } from "@react-navigation/native-stack";
 import { Header, HeaderTitle } from "@react-navigation/elements";
-import { Colors } from "@app/Colors";
-import { Fonts } from "@app/typography/Fonts";
+import { Colors } from "@app/components/Colors";
+import { Fonts } from "@app/components/typography/Fonts";
 
 type NavigationHeaderProps = NativeStackHeaderProps & { title: string };
 export const NavigationHeader = (props: NavigationHeaderProps) => {

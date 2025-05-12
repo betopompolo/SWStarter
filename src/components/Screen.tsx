@@ -1,5 +1,5 @@
 import { StyleSheet, View, ViewProps } from "react-native";
-import { Spacing } from "@app/Spacing";
+import { Spacing } from "@app/components/Spacing";
 
 type ScreenProps = Pick<ViewProps, "children"> & {};
 

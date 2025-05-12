@@ -1,8 +1,8 @@
 import React from "react";
 import { Pressable, StyleSheet, View } from "react-native";
-import { Colors } from "@app/Colors";
-import { Text } from "@app/typography/Text";
-import { Spacing } from "@app/Spacing";
+import { Colors } from "@app/components/Colors";
+import { Text } from "@app/components/typography/Text";
+import { Spacing } from "@app/components/Spacing";
 
 type RadioButtonProps = {
   isChecked: boolean;

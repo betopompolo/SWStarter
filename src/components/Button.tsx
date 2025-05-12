@@ -1,7 +1,7 @@
 import { Pressable, StyleSheet } from "react-native";
-import { Colors } from "@app/Colors";
+import { Colors } from "@app/components/Colors";
 import { useMemo } from "react";
-import { Text } from "@app/typography/Text";
+import { Text } from "@app/components/typography/Text";
 
 type ButtonProps = {
   text: string;

@@ -1,0 +1,79 @@
+import { StyleSheet, View } from "react-native";
+import { Screen } from "@app/components/Screen";
+import { Text } from "@app/components/typography/Text";
+import { StaticScreenProps, useNavigation } from "@react-navigation/native";
+import { MovieDetails, useMovieDetails } from "@app/useMovieDetails";
+import { Colors } from "@app/components/Colors";
+import { ContentSectionView } from "@app/components/ContentSectionView";
+import { LinkButton } from "@app/components/LinkButton";
+import { Fragment } from "react";
+import { Button } from "@app/components/Button";
+
+type MovieDetailsScreenProps = StaticScreenProps<{
+  movieId: string;
+}>;
+
+export const MovieDetailsScreen = (props: MovieDetailsScreenProps) => {
+  const { movieDetails, isMovieDetailsLoading } = useMovieDetails("movie1");
+  const navigation = useNavigation();
+
+  const handleCharacterLinkTap =
+    (character: MovieDetails["characters"][0]) => () => {
+      console.log(character);
+    };
+
+  const handleBackToSearchTap = () => {
+    navigation.navigate("Home");
+  };
+
+  return (
+    <Screen>
+      <View style={styles.content}>
+        {isMovieDetailsLoading ? (
+          <Text type={"body"} bold textAlign="center" color={Colors.gray2}>
+            Loading
+          </Text>
+        ) : (
+          <>
+            {movieDetails ? (
+              <>
+                <ContentSectionView title="Opening Crawl">
+                  <Text type={"body"}>{movieDetails.openingText}</Text>
+                </ContentSectionView>
+                <ContentSectionView title="Characters">
+                  <View style={styles.charactersWrapper}>
+                    {movieDetails.characters.map((character, index) => (
+                      <Fragment key={character.id}>
+                        <LinkButton
+                          text={character.name}
+                          onTap={handleCharacterLinkTap(character)}
+                        />
+                        {index !== movieDetails.characters.length - 1 ? (
+                          <Text type={"body"}>, </Text>
+                        ) : null}
+                      </Fragment>
+                    ))}
+                  </View>
+                </ContentSectionView>
+              </>
+            ) : (
+              <Text type={"body"} bold textAlign="center" color={Colors.gray2}>
+                No movie was found with id {props.route.params.movieId}
+              </Text>
+            )}
+          </>
+        )}
+      </View>
+      <Button text={"Back to search"} onTap={handleBackToSearchTap} />
+    </Screen>
+  );
+};
+
+const styles = StyleSheet.create({
+  content: { flex: 1, alignItems: "stretch" },
+  charactersWrapper: {
+    flexDirection: "row",
+    width: "100%",
+    flexWrap: "wrap",
+  },
+});

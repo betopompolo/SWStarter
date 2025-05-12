@@ -1,13 +1,13 @@
 import { FlatList, ListRenderItem, StyleSheet, View } from "react-native";
-import { Text } from "@app/typography/Text";
-import { Divider } from "@app/Divider";
-import { Colors } from "@app/Colors";
+import { Text } from "@app/components/typography/Text";
+import { Divider } from "@app/components/Divider";
+import { Colors } from "@app/components/Colors";
 import { StaticScreenProps, useNavigation } from "@react-navigation/native";
-import { Button } from "@app/Button";
-import { Screen } from "@app/Screen";
+import { Button } from "@app/components/Button";
+import { Screen } from "@app/components/Screen";
 import { SearchResult, SearchType, useSearch } from "@app/useSearch";
 import { useMemo } from "react";
-import { Spacing, SpacingView } from "@app/Spacing";
+import { Spacing, SpacingView } from "@app/components/Spacing";
 
 type SearchResultsScreenProps = StaticScreenProps<{
   query: string;

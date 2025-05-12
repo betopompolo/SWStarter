@@ -1,13 +1,13 @@
 import { StyleSheet, View } from "react-native";
-import { TextInput } from "@app/TextInput";
-import { Spacing, SpacingView } from "@app/Spacing";
-import { Text } from "@app/typography/Text";
-import { RadioButton } from "@app/RadioButton";
+import { TextInput } from "@app/components/TextInput";
+import { Spacing, SpacingView } from "@app/components/Spacing";
+import { Text } from "@app/components/typography/Text";
+import { RadioButton } from "@app/components/RadioButton";
 import { useState } from "react";
-import { Button } from "@app/Button";
+import { Button } from "@app/components/Button";
 import { SearchType } from "@app/useSearch";
 import { useNavigation } from "@react-navigation/native";
-import { Screen } from "@app/Screen";
+import { Screen } from "@app/components/Screen";
 
 export function SearchScreen() {
   const [searchType, setSearchType] = useState<SearchType>("character");
