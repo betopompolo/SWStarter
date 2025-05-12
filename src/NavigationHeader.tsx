@@ -1,6 +1,7 @@
 import { NativeStackHeaderProps } from "@react-navigation/native-stack";
-import { Header } from "@react-navigation/elements";
+import { Header, HeaderTitle } from "@react-navigation/elements";
 import { Colors } from "@app/Colors";
+import { Fonts } from "@app/typography/Fonts";
 
 type NavigationHeaderProps = NativeStackHeaderProps & { title: string };
 export const NavigationHeader = (props: NavigationHeaderProps) => {
@@ -8,10 +9,15 @@ export const NavigationHeader = (props: NavigationHeaderProps) => {
     <Header
       {...props}
       title={props.title}
+      headerTintColor={Colors.primary}
       headerShadowVisible={false}
       headerStyle={{
         backgroundColor: Colors.white,
       }}
+      headerTitle={(props) => (
+        <HeaderTitle {...props} style={{ fontFamily: Fonts.poppinsBold }} />
+      )}
+      headerBackButtonDisplayMode="minimal"
       headerTitleAlign="center"
       headerBackgroundContainerStyle={{
         borderBottomWidth: 1,

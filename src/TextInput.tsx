@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
     borderColor: Colors.gray1,
     borderWidth: 1,
     padding: Spacing.xSmall,
-    fontFamily: Fonts.bold,
+    fontFamily: Fonts.montserratBold,
     color: Colors.black,
   },
 });

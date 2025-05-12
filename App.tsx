@@ -1,14 +1,11 @@
 import { Navigation } from "@app/Navigation";
 import { useEffect } from "react";
-import {
-  Montserrat_400Regular,
-  Montserrat_700Bold,
-  useFonts,
-} from "@expo-google-fonts/montserrat";
 import * as SplashScreen from "expo-splash-screen";
 import { DefaultTheme, Theme as RNTheme } from "@react-navigation/native";
 import { Colors } from "@app/Colors";
 import { Fonts } from "@app/typography/Fonts";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { useLoadAssets } from "@app/useLoadAssets";
 
 const SWTheme: RNTheme = {
   ...DefaultTheme,
@@ -21,22 +18,20 @@ const SWTheme: RNTheme = {
     ...DefaultTheme.fonts,
     regular: {
       ...DefaultTheme.fonts.regular,
-      fontFamily: Fonts.regular,
+      fontFamily: Fonts.montserratRegular,
     },
     bold: {
       ...DefaultTheme.fonts.bold,
-      fontFamily: Fonts.bold,
+      fontFamily: Fonts.montserratBold,
     },
   },
 };
 
 SplashScreen.preventAutoHideAsync().catch(() => null);
+const queryClient = new QueryClient();
 
 export default function App() {
-  const [loaded, error] = useFonts({
-    Montserrat_400Regular,
-    Montserrat_700Bold,
-  });
+  const { loaded, error } = useLoadAssets();
 
   useEffect(() => {
     if (loaded || error) {
@@ -48,5 +43,9 @@ export default function App() {
     return null;
   }
 
-  return <Navigation theme={SWTheme} />;
+  return (
+    <QueryClientProvider client={queryClient}>
+      <Navigation theme={SWTheme} />
+    </QueryClientProvider>
+  );
 }

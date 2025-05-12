@@ -1,6 +1,7 @@
 import { View } from "react-native";
 
 export const Spacing = {
+  xxSmall: 9.5,
   xSmall: 10,
   small: 15,
   medium: 20,

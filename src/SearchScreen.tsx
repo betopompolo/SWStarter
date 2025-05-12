@@ -4,47 +4,62 @@ import { Spacing, SpacingView } from "@app/Spacing";
 import { Text } from "@app/typography/Text";
 import { RadioButton } from "@app/RadioButton";
 import { useState } from "react";
+import { Button } from "@app/Button";
+import { SearchType } from "@app/useSearch";
+import { useNavigation } from "@react-navigation/native";
+import { Screen } from "@app/Screen";
 
 export function SearchScreen() {
-  const [isMovieSearch, setIsMovieSearch] = useState(false);
+  const [searchType, setSearchType] = useState<SearchType>("character");
+  const [query, setQuery] = useState("");
+  const navigation = useNavigation();
 
-  const handlePeopleRadioBtnTap = () => {
-    setIsMovieSearch(false);
+  const handleCharRadioBtnTap = () => {
+    setSearchType("character");
   };
 
   const handleMoviesRadioBtnTap = () => {
-    setIsMovieSearch(true);
+    setSearchType("movie");
+  };
+
+  const handleSearchButtonTap = () => {
+    navigation.navigate("SearchResults", { query, searchType });
   };
 
   return (
-    <View style={styles.screen}>
-      <View style={styles.searchView}>
-        <Text type="body">What are you searching for?</Text>
-        <SpacingView space="medium" />
-        <View style={styles.radioGroup}>
-          <RadioButton
-            isChecked={!isMovieSearch}
-            onTap={handlePeopleRadioBtnTap}
-            label={"People"}
-          />
-          <RadioButton
-            isChecked={isMovieSearch}
-            onTap={handleMoviesRadioBtnTap}
-            label={"Movies"}
-          />
-        </View>
-        <TextInput placeholder={"e.g. Chewbacca, Yoda"} />
+    <Screen>
+      <Text type="body">What are you searching for?</Text>
+      <SpacingView space="medium" />
+      <View style={styles.radioGroup}>
+        <RadioButton
+          isChecked={searchType === "character"}
+          onTap={handleCharRadioBtnTap}
+          label={"People"}
+        />
+        <RadioButton
+          isChecked={searchType === "movie"}
+          onTap={handleMoviesRadioBtnTap}
+          label={"Movies"}
+        />
       </View>
-    </View>
+      <TextInput
+        placeholder={"e.g. Chewbacca, Yoda"}
+        value={query}
+        onChangeText={setQuery}
+      />
+      <View style={styles.spacer} />
+      <Button
+        text={"Search"}
+        onTap={handleSearchButtonTap}
+        disabled={!query.length}
+      />
+    </Screen>
   );
 }
 
 const styles = StyleSheet.create({
-  screen: {
+  spacer: {
     flex: 1,
-  },
-  searchView: {
-    padding: Spacing.large,
   },
   radioGroup: {
     flexDirection: "row",
