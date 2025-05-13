@@ -5,7 +5,7 @@ import { Colors } from "@app/components/Colors";
 import { StaticScreenProps, useNavigation } from "@react-navigation/native";
 import { Button } from "@app/components/Button";
 import { Screen } from "@app/components/Screen";
-import { SearchResult, SearchType, useSearch } from "@app/useSearch";
+import { SearchResult, SearchType, useSearch } from "@app/hooks/useSearch";
 import { useMemo } from "react";
 import { Spacing, SpacingView } from "@app/components/Spacing";
 
@@ -56,7 +56,11 @@ export const SearchResultsScreen = (props: SearchResultsScreenProps) => {
             {placeholderText}
           </Text>
         ) : (
-          <FlatList data={results} renderItem={renderItem} />
+          <FlatList
+            data={results}
+            renderItem={renderItem}
+            ItemSeparatorComponent={() => <Divider space={Spacing.medium} />}
+          />
         )}
       </View>
       <Button text={"Back to Search"} onTap={navigation.goBack} />

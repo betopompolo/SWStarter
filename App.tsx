@@ -5,7 +5,7 @@ import { DefaultTheme, Theme as RNTheme } from "@react-navigation/native";
 import { Colors } from "@app/components/Colors";
 import { Fonts } from "@app/components/typography/Fonts";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { useLoadAssets } from "@app/useLoadAssets";
+import { useLoadAssets } from "@app/hooks/useLoadAssets";
 
 const SWTheme: RNTheme = {
   ...DefaultTheme,

@@ -2,8 +2,11 @@ import { StyleSheet, View } from "react-native";
 import { Colors } from "@app/components/Colors";
 import { Spacing } from "@app/components/Spacing";
 
-export const Divider = () => {
-  return <View style={styles.divider} />;
+type DividerProps = {
+  space?: number;
+};
+export const Divider = ({ space = Spacing.xxSmall }: DividerProps) => {
+  return <View style={[styles.divider, { marginVertical: space }]} />;
 };
 
 const styles = StyleSheet.create({
@@ -11,6 +14,5 @@ const styles = StyleSheet.create({
     height: 1,
     width: "100%",
     backgroundColor: Colors.gray2,
-    marginVertical: Spacing.xxSmall,
   },
 });

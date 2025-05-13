@@ -7,6 +7,7 @@ import { SearchScreen } from "@app/screens/SearchScreen";
 import { NavigationHeader } from "@app/components/NavigationHeader";
 import { SearchResultsScreen } from "@app/screens/SearchResultsScreen";
 import { MovieDetailsScreen } from "@app/screens/MovieDetailsScreen";
+import { CharacterDetailsScreen } from "@app/screens/CharacterDetailsScreen";
 
 const RootStack = createNativeStackNavigator({
   screens: {
@@ -19,11 +20,14 @@ const RootStack = createNativeStackNavigator({
     MovieDetails: {
       screen: MovieDetailsScreen,
     },
+    CharacterDetails: {
+      screen: CharacterDetailsScreen,
+    },
   },
   screenOptions: {
     header: (props) => <NavigationHeader title={"SWStarter"} {...props} />,
   },
-  initialRouteName: "MovieDetails",
+  initialRouteName: "Home",
 });
 
 type RootStackParamList = StaticParamList<typeof RootStack>;

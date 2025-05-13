@@ -7,25 +7,36 @@ export type SearchResult = {
   type: SearchType;
 };
 
-function searchMovies(query: string): Promise<SearchResult[]> {
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      resolve([
-        {
-          id: "1",
-          title: "Episode I",
-          type: "movie",
-        },
-      ] as SearchResult[]);
-    }, 2000);
-  });
+async function searchMovies(query: string): Promise<SearchResult[]> {
+  await new Promise((resolve, reject) => setTimeout(resolve, 1000));
+  return [
+    {
+      id: "123",
+      type: "movie",
+      title: "Return of the Jedi",
+    },
+  ];
 }
 
-function searchCharacters(query: string): Promise<SearchResult[]> {
-  console.log(`searchCharacters`, query);
-  return new Promise((resolve, reject) => {
-    setTimeout(resolve, 500);
-  });
+async function searchCharacters(query: string): Promise<SearchResult[]> {
+  await new Promise((resolve, reject) => setTimeout(resolve, 1000));
+  return [
+    {
+      id: "1",
+      type: "character",
+      title: "Obi-Wan",
+    },
+    {
+      id: "2",
+      type: "character",
+      title: "Master Yoda",
+    },
+    {
+      id: "3",
+      type: "character",
+      title: "Darth Vader",
+    },
+  ];
 }
 
 type UseSearchProps = {

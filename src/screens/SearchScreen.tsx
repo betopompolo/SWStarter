@@ -5,7 +5,7 @@ import { Text } from "@app/components/typography/Text";
 import { RadioButton } from "@app/components/RadioButton";
 import { useState } from "react";
 import { Button } from "@app/components/Button";
-import { SearchType } from "@app/useSearch";
+import { SearchType } from "@app/hooks/useSearch";
 import { useNavigation } from "@react-navigation/native";
 import { Screen } from "@app/components/Screen";
 

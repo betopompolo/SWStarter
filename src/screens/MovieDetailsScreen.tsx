@@ -2,12 +2,13 @@ import { StyleSheet, View } from "react-native";
 import { Screen } from "@app/components/Screen";
 import { Text } from "@app/components/typography/Text";
 import { StaticScreenProps, useNavigation } from "@react-navigation/native";
-import { MovieDetails, useMovieDetails } from "@app/useMovieDetails";
+import { MovieDetails, useMovieDetails } from "@app/hooks/useMovieDetails";
 import { Colors } from "@app/components/Colors";
 import { ContentSectionView } from "@app/components/ContentSectionView";
 import { LinkButton } from "@app/components/LinkButton";
 import { Fragment } from "react";
 import { Button } from "@app/components/Button";
+import { Spacing } from "@app/components/Spacing";
 
 type MovieDetailsScreenProps = StaticScreenProps<{
   movieId: string;
@@ -36,7 +37,10 @@ export const MovieDetailsScreen = (props: MovieDetailsScreenProps) => {
         ) : (
           <>
             {movieDetails ? (
-              <>
+              <View style={{ gap: Spacing.large }}>
+                <Text type={"h1"} bold>
+                  {movieDetails.name}
+                </Text>
                 <ContentSectionView title="Opening Crawl">
                   <Text type={"body"}>{movieDetails.openingText}</Text>
                 </ContentSectionView>
@@ -55,7 +59,7 @@ export const MovieDetailsScreen = (props: MovieDetailsScreenProps) => {
                     ))}
                   </View>
                 </ContentSectionView>
-              </>
+              </View>
             ) : (
               <Text type={"body"} bold textAlign="center" color={Colors.gray2}>
                 No movie was found with id {props.route.params.movieId}
