@@ -42,3 +42,6 @@ yarn-error.*
 # Expo CNG
 /ios/
 /android/
+
+# Env
+.env
