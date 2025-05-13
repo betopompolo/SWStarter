@@ -20,7 +20,7 @@ export const MovieDetailsScreen = (props: MovieDetailsScreenProps) => {
 
   const handleCharacterLinkTap =
     (character: MovieDetails["characters"][0]) => () => {
-      console.log(character);
+      navigation.navigate("CharacterDetails", { characterId: character.id });
     };
 
   const handleBackToSearchTap = () => {

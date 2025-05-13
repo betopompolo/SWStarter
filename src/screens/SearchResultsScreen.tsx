@@ -30,7 +30,12 @@ export const SearchResultsScreen = (props: SearchResultsScreenProps) => {
   }, [isSearching]);
 
   const handleDetailsBtnTap = (item: SearchResult) => () => {
-    console.log(item);
+    // TODO: Not ideal but using if/else due to time constraints
+    if (item.type === "movie") {
+      navigation.navigate("MovieDetails", { movieId: item.id });
+    } else {
+      navigation.navigate("CharacterDetails", { characterId: item.id });
+    }
   };
 
   const renderItem: ListRenderItem<SearchResult> = ({ item }) => {
