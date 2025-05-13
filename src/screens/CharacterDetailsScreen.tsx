@@ -4,14 +4,18 @@ import {
   CharacterDetails,
   useCharacterDetails,
 } from "@app/hooks/useCharacterDetails";
-import { StaticScreenProps, useNavigation } from "@react-navigation/native";
+import {
+  StackActions,
+  StaticScreenProps,
+  useNavigation,
+} from "@react-navigation/native";
 import { Text } from "@app/components/typography/Text";
-import { Colors } from "@app/components/Colors";
 import { Spacing } from "@app/components/Spacing";
 import { ContentSectionView } from "@app/components/ContentSectionView";
 import { Button } from "@app/components/Button";
 import { Fragment } from "react";
 import { LinkButton } from "@app/components/LinkButton";
+import { PlaceholderView } from "@app/components/PlaceholderView";
 
 type CharacterDetailsScreenProps = StaticScreenProps<{
   characterId: string;
@@ -28,16 +32,14 @@ export const CharacterDetailsScreen = (props: CharacterDetailsScreenProps) => {
   };
 
   const handleBackToSearchTap = () => {
-    navigation.navigate("Home");
+    navigation.dispatch(StackActions.popToTop());
   };
 
   return (
     <Screen>
       <View style={styles.content}>
         {isCharacterDetailsLoading ? (
-          <Text type={"body"} bold textAlign="center" color={Colors.gray2}>
-            Loading
-          </Text>
+          <PlaceholderView text={"Loading..."} />
         ) : (
           <>
             {characterDetails ? (
@@ -76,9 +78,9 @@ export const CharacterDetailsScreen = (props: CharacterDetailsScreenProps) => {
                 </ContentSectionView>
               </View>
             ) : (
-              <Text type={"body"} bold textAlign="center" color={Colors.gray2}>
-                No character was found with id {props.route.params.characterId}
-              </Text>
+              <PlaceholderView
+                text={`No character was found with id ${props.route.params.characterId}`}
+              />
             )}
           </>
         )}

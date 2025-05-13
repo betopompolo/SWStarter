@@ -1,13 +1,13 @@
 import { FlatList, ListRenderItem, StyleSheet, View } from "react-native";
 import { Text } from "@app/components/typography/Text";
 import { Divider } from "@app/components/Divider";
-import { Colors } from "@app/components/Colors";
 import { StaticScreenProps, useNavigation } from "@react-navigation/native";
 import { Button } from "@app/components/Button";
 import { Screen } from "@app/components/Screen";
 import { SearchResult, SearchType, useSearch } from "@app/hooks/useSearch";
 import { useMemo } from "react";
 import { Spacing, SpacingView } from "@app/components/Spacing";
+import { PlaceholderView } from "@app/components/PlaceholderView";
 
 type SearchResultsScreenProps = StaticScreenProps<{
   query: string;
@@ -57,9 +57,7 @@ export const SearchResultsScreen = (props: SearchResultsScreenProps) => {
       <Divider />
       <View style={styles.contentWrapper}>
         {isSearching || results.length === 0 ? (
-          <Text type="body" bold color={Colors.gray2} textAlign="center">
-            {placeholderText}
-          </Text>
+          <PlaceholderView text={placeholderText} />
         ) : (
           <FlatList
             data={results}

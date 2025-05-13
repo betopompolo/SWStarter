@@ -11,8 +11,8 @@ export type MovieDetails = {
 };
 
 async function getMovieDetails(movieId: string): Promise<MovieDetails> {
-  await new Promise((resolve) => {
-    setTimeout(resolve, 1000);
+  await new Promise((resolve, reject) => {
+    setTimeout(reject, 5000);
   });
   return {
     id: movieId,

@@ -1,14 +1,18 @@
 import { StyleSheet, View } from "react-native";
 import { Screen } from "@app/components/Screen";
 import { Text } from "@app/components/typography/Text";
-import { StaticScreenProps, useNavigation } from "@react-navigation/native";
+import {
+  StackActions,
+  StaticScreenProps,
+  useNavigation,
+} from "@react-navigation/native";
 import { MovieDetails, useMovieDetails } from "@app/hooks/useMovieDetails";
-import { Colors } from "@app/components/Colors";
 import { ContentSectionView } from "@app/components/ContentSectionView";
 import { LinkButton } from "@app/components/LinkButton";
 import { Fragment } from "react";
 import { Button } from "@app/components/Button";
 import { Spacing } from "@app/components/Spacing";
+import { PlaceholderView } from "@app/components/PlaceholderView";
 
 type MovieDetailsScreenProps = StaticScreenProps<{
   movieId: string;
@@ -24,16 +28,14 @@ export const MovieDetailsScreen = (props: MovieDetailsScreenProps) => {
     };
 
   const handleBackToSearchTap = () => {
-    navigation.navigate("Home");
+    navigation.dispatch(StackActions.popToTop());
   };
 
   return (
     <Screen>
       <View style={styles.content}>
         {isMovieDetailsLoading ? (
-          <Text type={"body"} bold textAlign="center" color={Colors.gray2}>
-            Loading
-          </Text>
+          <PlaceholderView text={"Loading..."} />
         ) : (
           <>
             {movieDetails ? (
@@ -61,9 +63,9 @@ export const MovieDetailsScreen = (props: MovieDetailsScreenProps) => {
                 </ContentSectionView>
               </View>
             ) : (
-              <Text type={"body"} bold textAlign="center" color={Colors.gray2}>
-                No movie was found with id {props.route.params.movieId}
-              </Text>
+              <PlaceholderView
+                text={`No movie was found with id ${props.route.params.movieId}`}
+              />
             )}
           </>
         )}
