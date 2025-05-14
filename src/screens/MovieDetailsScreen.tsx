@@ -19,7 +19,9 @@ type MovieDetailsScreenProps = StaticScreenProps<{
 }>;
 
 export const MovieDetailsScreen = (props: MovieDetailsScreenProps) => {
-  const { movieDetails, isMovieDetailsLoading } = useMovieDetails("movie1");
+  const { movieDetails, isMovieDetailsLoading } = useMovieDetails(
+    props.route.params.movieId,
+  );
   const navigation = useNavigation();
 
   const handleCharacterLinkTap =
@@ -44,7 +46,7 @@ export const MovieDetailsScreen = (props: MovieDetailsScreenProps) => {
                   {movieDetails.name}
                 </Text>
                 <ContentSectionView title="Opening Crawl">
-                  <Text type={"body"}>{movieDetails.openingText}</Text>
+                  <Text type={"body"}>{movieDetails.openingCrawl}</Text>
                 </ContentSectionView>
                 <ContentSectionView title="Characters">
                   <View style={styles.charactersWrapper}>

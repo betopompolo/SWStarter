@@ -27,7 +27,6 @@ export function TextInput({
   );
 }
 
-// TODO: Android
 const styles = StyleSheet.create({
   input: {
     borderRadius: 4,

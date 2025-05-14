@@ -10,10 +10,9 @@ type RadioButtonProps = {
   label: string;
 };
 
-// TODO: Accessibility
 export function RadioButton({ isChecked, onTap, label }: RadioButtonProps) {
   return (
-    <Pressable style={styles.row} onPress={onTap}>
+    <Pressable style={styles.row} onPress={onTap} accessibilityRole="radio">
       <View style={styles.indicator}>
         {isChecked ? (
           <View style={styles.indicatorFill}>
@@ -28,7 +27,6 @@ export function RadioButton({ isChecked, onTap, label }: RadioButtonProps) {
   );
 }
 
-// TODO: Reanimated
 const indicatorSize = 13;
 const dotSize = 3;
 const styles = StyleSheet.create({

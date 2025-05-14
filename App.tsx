@@ -28,7 +28,13 @@ const SWTheme: RNTheme = {
 };
 
 SplashScreen.preventAutoHideAsync().catch(() => null);
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      retry: false,
+    },
+  },
+});
 
 export default function App() {
   const { loaded, error } = useLoadAssets();

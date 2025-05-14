@@ -27,9 +27,10 @@ export const CharacterDetailsScreen = (props: CharacterDetailsScreenProps) => {
   );
   const navigation = useNavigation();
 
-  const handleMovieLinkTap = (movie: CharacterDetails["movies"][0]) => () => {
-    navigation.navigate("MovieDetails", { movieId: movie.id });
-  };
+  const handleMovieLinkTap =
+    (movie: CharacterDetails["moviesShort"][0]) => () => {
+      navigation.navigate("MovieDetails", { movieId: movie.id });
+    };
 
   const handleBackToSearchTap = () => {
     navigation.dispatch(StackActions.popToTop());
@@ -63,13 +64,13 @@ export const CharacterDetailsScreen = (props: CharacterDetailsScreenProps) => {
                 </ContentSectionView>
                 <ContentSectionView title="Movies">
                   <View style={styles.moviesWrapper}>
-                    {characterDetails.movies.map((movie, index) => (
+                    {characterDetails.moviesShort.map((movie, index) => (
                       <Fragment key={movie.id}>
                         <LinkButton
                           text={movie.name}
                           onTap={handleMovieLinkTap(movie)}
                         />
-                        {index !== characterDetails.movies.length - 1 ? (
+                        {index !== characterDetails.moviesShort.length - 1 ? (
                           <Text type={"body"}>, </Text>
                         ) : null}
                       </Fragment>

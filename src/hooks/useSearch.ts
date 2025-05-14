@@ -1,42 +1,31 @@
 import { useQuery } from "@tanstack/react-query";
+import { z } from "zod";
+import { Env } from "@app/Env";
 
-export type SearchType = "movie" | "character";
-export type SearchResult = {
-  id: string;
-  title: string;
-  type: SearchType;
-};
+export const SearchResultScheme = z.object({
+  id: z.string(),
+  name: z.string(),
+  type: z.union([z.literal("movie"), z.literal("character")]),
+});
+export type SearchResult = z.infer<typeof SearchResultScheme>;
+export type SearchType = SearchResult["type"];
 
-async function searchMovies(query: string): Promise<SearchResult[]> {
-  await new Promise((resolve, reject) => setTimeout(resolve, 1000));
-  return [
-    {
-      id: "123",
-      type: "movie",
-      title: "Return of the Jedi",
-    },
-  ];
+export const SearchResultsScheme = z.array(SearchResultScheme);
+export type SearchResults = z.infer<typeof SearchResultsScheme>;
+
+async function searchMovies(query: string): Promise<SearchResults> {
+  const url = new URL("searchMovies", Env.EXPO_PUBLIC_SERVER_URL);
+  url.searchParams.set("query", query);
+  const json = await fetch(url.toString()).then((res) => res.json());
+
+  return SearchResultsScheme.parse(json);
 }
 
-async function searchCharacters(query: string): Promise<SearchResult[]> {
-  await new Promise((resolve, reject) => setTimeout(resolve, 1000));
-  return [
-    {
-      id: "1",
-      type: "character",
-      title: "Obi-Wan",
-    },
-    {
-      id: "2",
-      type: "character",
-      title: "Master Yoda",
-    },
-    {
-      id: "3",
-      type: "character",
-      title: "Darth Vader",
-    },
-  ];
+async function searchCharacters(query: string): Promise<SearchResults> {
+  const url = new URL("searchCharacters", Env.EXPO_PUBLIC_SERVER_URL);
+  url.searchParams.set("query", query);
+  const json = await fetch(url.toString()).then((res) => res.json());
+  return SearchResultsScheme.parse(json);
 }
 
 type UseSearchProps = {

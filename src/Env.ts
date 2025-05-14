@@ -1,17 +1,9 @@
-import { type } from "arktype";
+import { z } from "zod";
 
-const EnvScheme = type({
-  SERVER_URL: "string",
+const EnvScheme = z.object({
+  EXPO_PUBLIC_SERVER_URL: z.string(),
 });
 
-function parseEnv(): typeof EnvScheme.infer {
-  const result = EnvScheme({
-    SERVER_URL: process.env.SERVER_URL,
-  });
-  if (result instanceof type.errors) {
-    throw new Error(result.toString());
-  }
-  return result;
-}
-
-export const Env = parseEnv();
+export const Env = EnvScheme.parse({
+  EXPO_PUBLIC_SERVER_URL: process.env.EXPO_PUBLIC_SERVER_UR,
+});

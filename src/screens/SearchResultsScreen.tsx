@@ -30,19 +30,22 @@ export const SearchResultsScreen = (props: SearchResultsScreenProps) => {
   }, [isSearching]);
 
   const handleDetailsBtnTap = (item: SearchResult) => () => {
-    // TODO: Not ideal but using if/else due to time constraints
-    if (item.type === "movie") {
-      navigation.navigate("MovieDetails", { movieId: item.id });
-    } else {
-      navigation.navigate("CharacterDetails", { characterId: item.id });
-    }
+    const actionsRecord: Record<SearchType, () => void> = {
+      character(): void {
+        navigation.navigate("CharacterDetails", { characterId: item.id });
+      },
+      movie(): void {
+        navigation.navigate("MovieDetails", { movieId: item.id });
+      },
+    };
+    actionsRecord[item.type]();
   };
 
   const renderItem: ListRenderItem<SearchResult> = ({ item }) => {
     return (
       <View style={{ width: "100%" }}>
         <Text type={"body"} bold>
-          {item.title}
+          {item.name}
         </Text>
         <SpacingView space={"small"} />
         <Button text={"See details"} onTap={handleDetailsBtnTap(item)} />

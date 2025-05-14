@@ -1,35 +1,34 @@
 import { useQuery } from "@tanstack/react-query";
+import { fetch } from "expo/fetch";
+import { Env } from "@app/Env";
+import { z } from "zod";
 
-export interface CharacterDetails {
-  id: string;
-  name: string;
-  birthYear: string;
-  gender: string;
-  eyeColor: string;
-  hairColor: string;
-  height: number;
-  mass: number;
-  movies: {
-    id: string;
-    name: string;
-  }[];
-}
+export const CharacterDetailsSchema = z.object({
+  id: z.string(),
+  name: z.string(),
+  birthYear: z.string(),
+  gender: z.string(),
+  eyeColor: z.string(),
+  hairColor: z.string(),
+  height: z.string(),
+  mass: z.string(),
+  moviesShort: z.array(
+    z.object({
+      id: z.string(),
+      name: z.string(),
+    }),
+  ),
+});
+export type CharacterDetails = z.infer<typeof CharacterDetailsSchema>;
 
 async function getCharacterDetails(
   characterId: string,
 ): Promise<CharacterDetails> {
-  await new Promise((resolve) => setTimeout(resolve, 1000));
-  return {
-    id: characterId,
-    name: "Bib Fortuna",
-    birthYear: "24BBY",
-    gender: "male",
-    eyeColor: "brown",
-    hairColor: "black",
-    height: 183,
-    mass: 84,
-    movies: [{ id: "1", name: "Return of the Jedi" }],
-  };
+  const url = new URL("getCharacterDetails", Env.EXPO_PUBLIC_SERVER_URL);
+  url.searchParams.set("characterId", characterId);
+  const result = await fetch(url.toString());
+  const json = await result.json();
+  return CharacterDetailsSchema.parse(json);
 }
 
 export const useCharacterDetails = (characterId: string) => {
